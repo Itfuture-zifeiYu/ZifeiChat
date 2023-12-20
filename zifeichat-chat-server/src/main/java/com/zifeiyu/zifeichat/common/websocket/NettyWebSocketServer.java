@@ -33,6 +33,7 @@ import javax.annotation.PreDestroy;
 public class NettyWebSocketServer {
     public static final int WEB_SOCKET_PORT = 8090;
 
+    //netty业务处理器-自定义
     public static final NettyWebSocketServerHandler  NETTY_WEB_SOCKET_SERVER_HANDLER = new NettyWebSocketServerHandler();
     
     //创建线程池执行器
@@ -50,12 +51,13 @@ public class NettyWebSocketServer {
 
     /**
      * 销毁
+     * 优雅停机
      */
     @PreDestroy
     public void destroy(){
         Future<?> future = bossGroup.shutdownGracefully();
         Future<?> future1 = workerGroup.shutdownGracefully();
-        
+        //等待
         future.syncUninterruptibly();
         future1.syncUninterruptibly();
         log.info("关闭 ws server 成功");
@@ -95,6 +97,8 @@ public class NettyWebSocketServer {
                          *  3. 浏览器发送请求时： ws://localhost:7000/hello 表示请求的uri
                          *  4. WebSocketServerProtocolHandler 核心功能是把 http协议升级为 ws 协议，保持长连接；
                          *      是通过一个状态码 101 来切换的
+                         *      
+                         *  WebSocketServerProtocolHandler是netty提供websocket的处理器 ，升级websocket协议   
                          */
                         pipeline.addLast(new WebSocketServerProtocolHandler("/"));
                         // 自定义handler ，处理业务逻辑
