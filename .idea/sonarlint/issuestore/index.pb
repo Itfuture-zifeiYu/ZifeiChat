@@ -1,8 +1,6 @@
 
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-M
-zifeichat-chat-server/pom.xml,7\c\7c391729616cdaeb5553e749a4cf5d18cff23cd1
 m
 =zifeichat-framework/zifeichat-common-starter/src/main/java/aa,e\4\e432b6f9fd34ac1f0fbae6510bbcc9f131802f8a
 m
@@ -15,3 +13,5 @@ V
 bzifeichat-chat-server/src/main/java/com/zifeiyu/zifeichat/common/websocket/HttpHeadersHandler.java,b\3\b3effa976c199ef91143765169c85dea361467fa
 â
 Yzifeichat-chat-server/src/main/java/com/zifeiyu/zifeichat/common/websocket/NettyUtil.java,f\6\f687b6f98d08689feaf208fa53cc15ef66ee2941
+ê
+`zifeichat-chat-server/src/main/java/com/zifeiyu/zifeichat/common/ZifeichatCustomApplication.java,e\b\eb9c66b2a555613cb8891dc9cb84d3cf06d1a050

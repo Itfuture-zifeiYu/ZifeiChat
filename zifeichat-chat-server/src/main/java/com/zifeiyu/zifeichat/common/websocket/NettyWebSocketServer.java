@@ -26,7 +26,7 @@ import javax.annotation.PreDestroy;
  * @author: wxh
  * @version:
  * @date: 2023/12/15 17:41
- * @description:
+ * @description: netty的websocket服务
  */
 @Slf4j
 @Configuration
@@ -76,7 +76,7 @@ public class NettyWebSocketServer {
                     @Override
                     protected void initChannel(SocketChannel socketChannel) throws Exception {
                         ChannelPipeline pipeline = socketChannel.pipeline();
-                        //30秒客户端没有向服务器发送心跳则关闭连接
+                        //30秒客户端没有向服务器发送心跳则关闭连接，IdleStateHandler实现心跳检测
                         pipeline.addLast(new IdleStateHandler(30,0,0));
                         // 因为使用http协议，所以需要使用http的编码器，解码器
                         pipeline.addLast(new HttpServerCodec());
