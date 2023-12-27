@@ -1,5 +1,6 @@
 package com.zifeiyu.zifeichat.common;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -14,6 +15,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  */
 @SpringBootApplication(scanBasePackages = {"com.zifeiyu.zifeichat"})
 @ServletComponentScan
+@MapperScan({"com.zifeiyu.zifeichat.common.**.mapper"})
 public class ZifeichatCustomApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZifeichatCustomApplication.class,args);
