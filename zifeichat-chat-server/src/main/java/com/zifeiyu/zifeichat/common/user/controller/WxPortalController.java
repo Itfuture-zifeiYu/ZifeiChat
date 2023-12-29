@@ -9,8 +9,11 @@ package com.zifeiyu.zifeichat.common.user.controller;
  * @description: 信api交互接口
  */
 
+import com.zifeiyu.zifeichat.common.user.service.WXMsgService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
+import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
@@ -28,6 +31,8 @@ import org.springframework.web.servlet.view.RedirectView;
 public class WxPortalController {
     @Autowired
     private WxMpService wxMpService;
+    @Autowired
+    private WXMsgService wxMsgService;
     
     
     private final WxMpService wxService;
@@ -60,8 +65,16 @@ public class WxPortalController {
     }
 
     @GetMapping("/callBack")
-    public RedirectView callBack(@RequestParam String code) {
-        return null;
+    public RedirectView callBack(@RequestParam String code) throws WxErrorException {
+        WxOAuth2AccessToken accessToken = wxMpService.getOAuth2Service().getAccessToken(code);
+        WxOAuth2UserInfo userInfo = wxMpService.getOAuth2Service().getUserInfo(accessToken, "zh_CN");
+        //授权成功后，将用户信息存入数据库
+        wxMsgService.authorize(userInfo);
+        
+        //授权完成后-回调页面
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("http://www.baidu.com");
+        return redirectView;
     }
 
     @PostMapping(produces = "application/xml; charset=UTF-8")

@@ -1,7 +1,6 @@
 package com.zifeiyu.zifeichat.common.user.service;
 
 import com.zifeiyu.zifeichat.common.user.domain.entity.User;
-import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -11,6 +10,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author wxh
  * @since 2023-12-25
  */
-public interface IUserService extends IService<User> {
+public interface UserService{
 
+    /**
+     * 注册
+     * @param insertUser
+     * @return
+     */
+    Long register(User insertUser);
 }

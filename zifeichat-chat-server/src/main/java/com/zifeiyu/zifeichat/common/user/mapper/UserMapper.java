@@ -12,5 +12,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2023-12-25
  */
 public interface UserMapper extends BaseMapper<User> {
+/** mapper中自定义的方法(手写sql等)，也必须在dao中进行调用，
+ * 业务不直接使用mapper，而使用dao，所以这里需要调用mapper中的方法
+ void myUpdate();
+ */
 
 }
